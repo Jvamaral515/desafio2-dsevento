@@ -3,7 +3,9 @@ package com.devsuperior.dsevento.entities;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_atividade")
@@ -22,6 +24,12 @@ public class Atividade {
 
     @OneToMany(mappedBy = "atividade")
     private List<Bloco> blocos = new ArrayList<>();
+
+    @ManyToMany
+    @JoinTable(name = "tb_participante_atividade",
+            joinColumns = @JoinColumn(name = "atividade_id"),
+            inverseJoinColumns = @JoinColumn(name = "participante_id"))
+    private Set<Participante> participantes = new HashSet<>();
 
     public Atividade(){
 
@@ -80,5 +88,9 @@ public class Atividade {
 
     public void setBlocos(List<Bloco> blocos) {
         this.blocos = blocos;
+    }
+
+    public Set<Participante> getParticipantes() {
+        return participantes;
     }
 }
