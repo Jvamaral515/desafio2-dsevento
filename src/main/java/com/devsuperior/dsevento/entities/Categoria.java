@@ -1,4 +1,4 @@
-package com.devsuperior.dsevento;
+package com.devsuperior.dsevento.entities;
 
 import jakarta.persistence.*;
 
